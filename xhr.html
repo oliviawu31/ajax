@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
     <style>
         ul li {
             margin: 5px;
@@ -38,14 +37,21 @@
 
 </html>
 <script>
+    /********************************************************
+    * 1.api網址  https://kktix.com/events.json
+    * 2.宣告一個XMLHttpRequest物件
+    * 3.建立請求的各項設定及實質內容
+    * 4.建立得到回應時的各項行為
+    * 5.送出請求
+    ********************************************************/
 
-    //  1.api網址  https://kktix.com/events.json
-    // * 2.宣告一個XMLHttpRequest物件
+    //宣告一個XMLHttpRequest物件
     let xhr = new XMLHttpRequest();
-    // *3.建立請求的各項設定及實質內容
+
+    //建立請求的各項設定及實質內容
     xhr.open('GET', 'https://kktix.com/events.json')
-    // *4.建立得到回應時的各項行為
-    // *  匿名變數=>只用一次
+
+    //建立得到回應時的各項設定及行為
     xhr.onload = function () {
         let type = xhr.getResponseHeader('Content-Type', 'application/json');
         let status = xhr.status;
@@ -64,19 +70,7 @@
             $('ul').append(li);
         }
     }
-    // *5.送出請求
-
-    xhr.send();
-
-    //宣告一個XMLHttpRequest物件
-
-
-    //建立請求的各項設定及實質內容
-
-
-    //建立得到回應時的各項設定及行為
-
 
     //送出請求
-
+    xhr.send();
 </script>
