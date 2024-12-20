@@ -1,43 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>jQuery</title>
-    <link rel="shortcut icon" href="#" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-      <!-------引入jQuery函式庫------->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>jQuery</title>
+  <link rel="shortcut icon" href="#" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <!-------引入jQuery函式庫------->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <style>
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 10px 50px;
+      margin: auto;
+      justify-content: space-evenly;
+    }
+
+    ul li {
+      font-size: 18px;
+      width: 22%;
+      padding: 5px 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      box-shadow: 1px 1px 10px #999;
+      margin: 16px 0;
+      height: 250px;
+      text-align: center;
+      /* 讓文字置中 */
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      /* 使內容在水平方向置中 */
+
+
+    }
+
+    ul li:hover {
+      background: lightpink;
+      padding: 8px 13px;
+      font-size: 18px;
+    }
+  </style>
 </head>
+
 <body>
-    <h1 class="header">jQuery</h1>
-    <div class="title"></div>
-    <h4></h4>
-    <ul></ul>
-    
+  <h1 class="header">jQuery</h1>
+  <div class="title"></div>
+  <h4></h4>
+  <ul></ul>
+
 </body>
+
 </html>
 <script>
-    /********************************************************
-    * 1.api網址  https://kktix.com/events.json
-    * 2.選擇$.ajax()、$.get()、$.post()其中一種方式
-    * 3.建立回呼函式(call back function)來處理回應時的各項行為
-    * 4.建立錯誤處理
-    ********************************************************/
-     
-    //利用$.ajax()方法傳送請求並取得回應
-    /* $.ajax(
-      {
-        url:'',
-        type:'',
-        success:,
-        error:,
-        complete:
-      }
-    ) */   
+  /********************************************************
+  * 1.api網址  https://kktix.com/events.json
+  * 2.選擇$.ajax()、$.get()、$.post()其中一種方式
+  * 3.建立回呼函式(call back function)來處理回應時的各項行為
+  * 4.建立錯誤處理
+  ********************************************************/
 
-    
-    //利用$.get()方法傳送請求並取得回應
+  //利用$.ajax()方法傳送請求並取得回應
+  $.ajax(
+    {
+      url: 'https://kktix.com/events.json',
+      type: 'get',
+      // 回呼函式（callback function），當 AJAX 請求成功並收到回應時會被觸發。res 參數是從 API 返回的資料，通常是 JSON 格式。這裡使用箭頭函式（ES6 的語法）來定義回呼函式。
+      success: (res) => {
+        console.log(res)
+        let entrys = res.entry;
+
+        for (let i = 0; i < entrys.length; i++) {
+          let li = '';
+          li += `<li>`;
+          li += `${entrys[i].title}`;
+          li += `-`;
+          li += `${entrys[i].author.name}`;
+          li += `</li>`;
+          $('ul').append(li);
+        }
+      },
+    }
+  )
 
 
-  </script>
+  //利用$.get()方法傳送請求並取得回應
+
+
+</script>
