@@ -69,7 +69,8 @@
     {
       url: 'https://kktix.com/events.json',
       type: 'get',
-      // 回呼函式（callback function），當 AJAX 請求成功並收到回應時會被觸發。res 參數是從 API 返回的資料，通常是 JSON 格式。這裡使用箭頭函式（ES6 的語法）來定義回呼函式。
+      // 回呼函式（callback function），當 AJAX 請求成功並收到回應時會被觸發。
+      // res 參數是從 API 返回的資料，通常是 JSON 格式。這裡使用箭頭函式來定義回呼函式。
       success: (res) => {
         console.log(res)
         let entrys = res.entry;
