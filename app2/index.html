@@ -57,6 +57,7 @@
               <a class="nav-link" href="javascript:query(${item.classroom})">${item.classroom}</a>
              </li>`
         $("#classesList").append(c);
+        // 首頁執行時會載入第一個班級
         query(data[0].classroom);
       })
     })
