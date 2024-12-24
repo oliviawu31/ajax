@@ -163,22 +163,4 @@ function to($url){
 }
 
 
-$Title=new DB('titles');
-$Ad=new DB('ads');
-$Image=new DB('images');
-$Mvim=new DB('mvims');
-$News=new DB('news');
-$Admin=new DB('admin');
-$Menu=new DB('menus');
-$Total=new DB('total');
-$Bottom=new DB('bottom');
-
-// 總人數計算
-if(!isset($_SESSION['view'])){
-    echo "hi 歡迎第一次來訪";
-    $_SESSION['view']=1;
-    $total=$Total->find(1);
-    $total['total']++;
-    $Total->save($total);
-
-}
+$Stu=new DB('students');
