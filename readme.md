@@ -9,6 +9,7 @@ HTML原生就有XMLHttpRequest的方法可以用來實踐非同步的功能，�
 早期的http傳輸資料以xml為主，在前後端收到資料後，需要去進行解析，才能進一步應用，後來又推出JSON格式，資料量比XML小，解析和應用也較方便，因此近年來的資料傳輸逐漸以JSON來取代XML，因此也有人改稱為AJAJ技術。
 
 ---
+  
 
 ## XMLHttpRequest
 XMLHttpRequest在2006年正式被W3C列入標準，也是目前所有瀏灠器都有支援的標準。
