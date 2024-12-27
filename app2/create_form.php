@@ -1,4 +1,4 @@
-<!-- Modal HTML 結構 -->
+<!-- Modal -->
 <div class="modal fade" id="CreateModal" tabindex="-1" aria-labelledby="CreateModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -30,17 +30,13 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id='send'>儲存</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="submit" class="btn btn-primary">儲存</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-<!-- Bootstrap 的 CSS 和 JS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 $(document).ready(function() {
@@ -56,6 +52,11 @@ $(document).ready(function() {
             'classroom': $("#classroom").val(),
             'major': $("#major").val()
         }
+
+        $.post("api/insert.php", formData, function() {
+            getClass()
+            alert("新增完成");
+        })
         console.log(formData);
     });
 });
