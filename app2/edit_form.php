@@ -1,3 +1,10 @@
+<?php
+include_once "./api/db.php";
+
+$row=$Stu->find($_)
+
+?>
+
 <!-- Modal -->
 <div class="modal fade" id="CreateModal" tabindex="-1" aria-labelledby="CreateModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -47,9 +54,9 @@ $("#send").on("click", function() {
         'major': $("#major").val()
     }
 
-    $.post("api/insert.php", formData, function() {
+    $.post("api/update.php", formData, function() {
         getClasses()
-        alert("新增完成")
+        alert("編輯完成")
         CreateModal.hide();
         CreateModal.dispose();
         $("#modal").html("");

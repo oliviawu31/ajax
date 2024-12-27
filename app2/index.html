@@ -51,8 +51,8 @@
   function getClasses() {
     $.get("./api/get_classes.php", function (classes) {
       let data = JSON.parse(classes);
-      $("#classesList")
-      console.log(data);
+      $("#classesList").html('');
+      //console.log(data);
       data.forEach(function (item, idx) {
         let c = `<li class="nav-item">
               <a class="nav-link" href="javascript:query(${item.classroom})">${item.classroom}</a>
@@ -62,12 +62,12 @@
       })
     })
   }
-
+  let CreateModal
   //載入新增資料表單內容
   function create() {
     $.get("./create_form.php", function (html) {
       $("#modal").html(html);
-      let CreateModal = new bootstrap.Modal('#CreateModal');
+      CreateModal = new bootstrap.Modal('#CreateModal');
       CreateModal.show();
     })
   }
@@ -96,14 +96,29 @@
                 <td class='p-2'>${item.major}</td>
                 <td class='p-2'>${item.address}</td>
                 <td class='p-2'>
-                    <button class='btn btn-success'>編輯</button>
+                    <button class='btn btn-success edit' data-id='${item.id}'>編輯</button>
                     <button class='btn btn-danger' onclick='del(${item.id},${item.classroom})'>刪除</button>
                   </td>
                 </tr>`;
         $("#students").append(row);
       })
+
+      $(".edit").on("click", function () {
+        let id = $(this).data("id");
+        getEditForm(id);
+      })
     })
   }
+
+
+  //取得編輯資料表單內容
+  function getEditForm(id) {
+    $.get("./edit_form.php", { id }, function (html) {
+
+    })
+  }
+
+
 
   //編輯資料的函式
   function update() {
