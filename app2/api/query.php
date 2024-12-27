@@ -5,5 +5,4 @@ include_once "db.php";
 $code=$_GET['code'];
 $students=$Stu->all(['classroom'=>$code]);
 echo json_encode($students);
-
 ?>
