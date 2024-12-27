@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="CreateModal" tabindex="-1" aria-labelledby="CreateModalLabel" aria-hidden="true">
+<div class="modal fade" id="CreateModal" tabindex="-1" aria-labelledby="CreateModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="#" method="post">
@@ -39,22 +39,24 @@
 </div>
 <script>
 $("#send").on("click", function() {
-    let formData = {
-        'uni_id': $("#uni_id").val(),
-        'seat_num': $("#seat_num").val(),
-        'name': $("#name").val(),
-        'classroom': $("#classroom").val(),
-        'major': $("#major").val()
-    }
+            let formData = {
+                'uni_id': $("#uni_id").val(),
+                'seat_num': $("#seat_num").val(),
+                'name': $("#name").val(),
+                'classroom': $("#classroom").val(),
+                'major': $("#major").val()
+            }
 
-    $.post("api/insert.php", formData, function() {
-        getClasses()
-        alert("新增完成")
-        CreateModal.hide();
-        CreateModal.dispose();
-        $("#modal").html("");
+            $.post("api/insert.php", formData, function() {
+                getClasses()
+                alert("新增完成")
+                CreateModal.hide();
+                $("#CreateModal").on("hidden.bs.modal", function() {
+                    CreateModal.dispose();
+                    $("#modal").html("");
+                    query(formData.classroom)
 
-    })
-    //console.log(formData);
-})
+                })
+                //console.log(formData);
+            })
 </script>

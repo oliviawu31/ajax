@@ -5,7 +5,7 @@ $row=$Stu->find($_GET['id']);
 ?>
 
 <!-- Modal -->
-<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
+<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="EditModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="#" method="post">
@@ -36,7 +36,7 @@ $row=$Stu->find($_GET['id']);
                         <label for="major" class="form-label">科系</label>
                         <input type="text" name="major" class="form-control" id="major" value="<?=$row['major']?>">
                     </div>
-                    <input type="hidden" name="id" value="<?=$row['id']?>">
+                    <input type="hidden" name="id" id='userId' value="<?=$row['id']?>">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id='send'>編輯</button>
@@ -54,15 +54,20 @@ $("#send").on("click", function() {
         'name': $("#name").val(),
         'classroom': $("#classroom").val(),
         'major': $("#major").val(),
-        'id': $("#id").val()
+        'id': $("#userId").val()
     }
-
+    // console.log(formData)
     $.post("api/update.php", formData, function() {
         getClasses()
         alert("編輯完成")
-        CreateModal.hide();
-        CreateModal.dispose();
-        $("#modal").html("");
+        console.log(formData.classroom)
+        query(formData.classroom)
+        EditModal.hide();
+        $("#EditModal").on("hidden.bs.modal", function() {
+            EditModal.dispose();
+            $("#modal").html("");
+            query(formData.classroom)
+        })
 
     })
     //console.log(formData);
